@@ -139,8 +139,21 @@ desired effect
           </a>
         </li>
       <?php } ?>
+      <?php if($this->session->userdata['logado']['tipo']=='admin'){ ?>
+      <li class="active">
+        <a href="<?= site_url('computador'); ?>">
+          <i class="fa fa-link"></i> <span>Computadores</span>
+        </a>
+      </li>
+    <?php } ?>
+    <?php if($this->session->userdata['logado']['tipo']=='admin'){ ?>
+    <li class="active">
+      <a href="<?= site_url('categoria'); ?>">
+        <i class="fa fa-link"></i> <span>Categorias</span>
+      </a>
+    </li>
+  <?php } ?>
 
-        
 
       </ul>
       <!-- /.sidebar-menu -->

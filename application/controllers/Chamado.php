@@ -62,6 +62,8 @@
           $this->load->helper('form');
           $this->load->library('form_validation');
 
+
+
           //variaveis enviadas para a View
           $dados['titulo'] = "Cadastro de Usuários";
 
@@ -83,6 +85,13 @@
               $dados['acao']    .= $id; //concatenando o id
               $dados['registro'] = $this->chamado_model->get($id);
           }
+
+          $this->load->model('categoria_model');
+          $dados['listaCategorias'] = $this->categoria_model->get();
+
+          $this->load->model('computador_model');
+          $dados['listaComputadores'] = $this->computador_model->get();
+
 
           //veririca se o form foi submetido e não houve erros de validação
           if($this->form_validation->run()===false){

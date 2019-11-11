@@ -23,6 +23,34 @@
               <label for="descricao">Descrição</label>
               <textarea class="form-control" id="descricao" name="descricao" placeholder="Descrição" rows="5"><?php if(isset($registro['descricao'])){echo $registro['descricao'];} ?></textarea>
             </div>
+            <!-- Categoria -->
+            <div class="form-group">
+              <label for="idcategoria">Categoria</label>
+              <select class="form-control" name="idcategoria" required>
+                <option value="">Selecione um item da lista</option>
+                <?php foreach ($listaCategorias as $c): ?>
+                    <option value="<?= $c['id']; ?>" <?php if(isset($registro) && $c['id']==$registro['idcategoria']) echo "selected";?>>
+                        <?= $c['descricao']; ?>
+                    </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+
+
+            <!-- Computador -->
+            <div class="form-group">
+              <label for="idComputador">Computador</label>
+              <select class="form-control" name="idComputador" required>
+                <option value="">Selecione um item da lista</option>
+                <?php foreach ($listaComputadores as $item): ?>
+                    <option value="<?= $item['id']; ?>" <?php if(isset($registro) && $item['id']==$registro['idcomputador']) echo "selected";?>>
+                        <?= $item['nome']; ?>
+                    </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
+
+
 
           <?php  if(isset($registro)){?>
 

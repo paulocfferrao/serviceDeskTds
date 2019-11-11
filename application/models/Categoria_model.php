@@ -1,8 +1,8 @@
 <?php
-  class Estado_model extends CI_Model{
+  class Categoria_model extends CI_Model{
       private $tabelaNome;
       public function __construct(){
-          $this->tabelaNome = 'estado';
+          $this->tabelaNome = 'categoria';
           // $this->load->database();
       }
 
