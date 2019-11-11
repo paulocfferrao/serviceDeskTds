@@ -19,9 +19,25 @@
           if($this->session->userdata['logado']['tipo']=='admin'){
             if ($todos=='1') {
               $dados['lista'] = $this->chamado_model->getTodos();
+              foreach ($dados['lista'] as $item) {
+
+                  $this->load->model('usuario_model');
+                  $id = $item['idrequerente'];
+                  $item['requerente'] = $this->usuario_model->get($id);
+
+
+              }
               $this->template->load('template', 'chamado/viewChamado', $dados);
             }else{
               $dados['lista'] = $this->chamado_model->get();
+              foreach ($dados['lista'] as $item) {
+
+                  $this->load->model('usuario_model');
+                  $id = $item['idrequerente'];
+                  $item['requerente'] = $this->usuario_model->get($id);
+
+
+              }
               $this->template->load('template', 'chamado/viewChamado', $dados);
             }
           } else {

@@ -26,29 +26,12 @@
                   <small><?= $item['STATUS']?></small>
                 </div>
                 <p class="mb-1"><?= $item['descricao']?></p>
-                <?php// $requerente = buscaValor($item['idrequerente'],"usuarios","user",$con); ?>
-                <small>Requerente: <?=$item['idrequerente'];?></small>
+
+                <small>Requerente: <?=$item['requerente'];?></small>
               </a>
-              <?php //}
-               endforeach ?>
+              <?php endforeach ?>
 
             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
           </div>
         </div>
     </div>

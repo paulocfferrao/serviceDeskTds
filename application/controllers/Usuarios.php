@@ -16,7 +16,7 @@
       public function index(){
           $dados['titulo']= "Manutenção de Usuário";
           $dados['lista'] = $this->usuario_model->get();
-
+          
           $this->template->load('template', 'usuario/viewUsuario', $dados);
       }
 

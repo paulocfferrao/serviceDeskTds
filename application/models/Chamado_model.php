@@ -57,6 +57,7 @@
 
           if($id==null){ //registro novo
               $registro['STATUS'] = 'Novo';
+              $registro['idrequerente'] = $this->session->userdata['logado']['id'];
               return $this->db->insert($this->tabelaNome, $registro);
           }
           if (isset($registro['solucao'])) {
