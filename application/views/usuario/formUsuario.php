@@ -11,6 +11,7 @@
                 </div>
           <?php } ?>
 
+
           <?php echo form_open($acao); ?>
             <div class="form-group">
                 <label for="user">Login</label>
@@ -26,6 +27,18 @@
                    min="0" max="150" placeholder="Informe uma senha">
               </div>
             <?php// } ?>
+
+            <div class="form-group">
+              <label for="idsetor">Setor</label>
+              <select class="form-control" name="idsetor" required>
+                <option value="">Selecione um item da lista</option>
+                <?php foreach ($listaSetor as $item): ?>
+                    <option value="<?= $item['id']; ?>" <?php if(isset($registro) && $item['id']==$registro['idsetor']) echo "selected";?>>
+                        <?= $item['nome']; ?>
+                    </option>
+                <?php endforeach; ?>
+              </select>
+            </div>
 
             <div class="form-group">
               <label for="tipo">Tipo</label>

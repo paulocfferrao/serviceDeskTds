@@ -102,12 +102,12 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="<?= base_url('assets/dist/img/user2-160x160.jpg'); ?>" class="img-circle" alt="User Image">
+          <img src="<?= base_url('assets/dist/img/logo-upf.png'); ?>" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?= $this->session->userdata['logado']['user']; ?></p>
           <!-- Status -->
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+
         </div>
       </div>
 
@@ -139,6 +139,13 @@ desired effect
           </a>
         </li>
       <?php } ?>
+      <?php if($this->session->userdata['logado']['tipo']=='admin'){ ?>
+      <li class="active">
+        <a href="<?= site_url('setor'); ?>">
+          <i class="fa fa-link"></i> <span>Setores</span>
+        </a>
+      </li>
+    <?php } ?>
       <?php if($this->session->userdata['logado']['tipo']=='admin'){ ?>
       <li class="active">
         <a href="<?= site_url('computador'); ?>">

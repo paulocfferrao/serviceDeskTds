@@ -14,30 +14,30 @@
       }
 
       public function index($todos=null){
-          $dados['titulo']= "Manutenção de Usuário";
+          $dados['titulo']= "Chamados";
 
-          if($this->session->userdata['logado']['tipo']=='admin'){
+          if($this->session->userdata['logado']['tipo']!='requerente'){
             if ($todos=='1') {
               $dados['lista'] = $this->chamado_model->getTodos();
-              foreach ($dados['lista'] as $item) {
-
-                  $this->load->model('usuario_model');
-                  $id = $item['idrequerente'];
-                  $item['requerente'] = $this->usuario_model->get($id);
-
-
-              }
+              // foreach ($dados['lista'] as $item) {
+              //
+              //     $this->load->model('usuario_model');
+              //     $id = $item['idrequerente'];
+              //     $item['requerente'] = $this->usuario_model->get($id);
+              //
+              //
+              // }
               $this->template->load('template', 'chamado/viewChamado', $dados);
             }else{
               $dados['lista'] = $this->chamado_model->get();
-              foreach ($dados['lista'] as $item) {
-
-                  $this->load->model('usuario_model');
-                  $id = $item['idrequerente'];
-                  $item['requerente'] = $this->usuario_model->get($id);
-
-
-              }
+              // foreach ($dados['lista'] as $item) {
+              //
+              //     $this->load->model('usuario_model');
+              //     $id = $item['idrequerente'];
+              //     $item['requerente'] = $this->usuario_model->get($id);
+              //
+              //
+              // }
               $this->template->load('template', 'chamado/viewChamado', $dados);
             }
           } else {
@@ -72,10 +72,7 @@
           //echo $rule_nome;
           $this->form_validation->set_rules('titulo', 'descricao', $rule_nome);
 
-          //senha obrigatoria apenas no cadastro
-          //if($id==null) $this->form_validation->set_rules('senha', 'senha', 'required');
 
-          //$this->form_validation->set_rules('tipo', 'Tipo', 'required');
 
           //acao dinamica que sera enviada para a view
           $dados['acao'] = "chamado/cadastrar/";

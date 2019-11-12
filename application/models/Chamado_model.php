@@ -8,7 +8,12 @@
 
       public function get($id=null){
         if($id==null){
-          $query = $this->db->get_where('chamado', array('status'=>'novo'));
+
+          $this->db->select('c.id,c.titulo,c.descricao,c.STATUS,c.solucao,u.user as requerente');
+          $this->db->from('chamado c');
+          $this->db->join('usuarios u', 'u.id=c.idrequerente');
+          $this->db->where(array('c.status'=>'novo'));
+          $query = $this->db->get();
           return $query->result_array();
 
           }
@@ -18,8 +23,12 @@
       }
       public function getTodos(){
 
-               $query = $this->db->get('chamado');
+               $this->db->select('c.id,c.titulo,c.descricao,c.STATUS,c.solucao,u.user as requerente');
+               $this->db->from('chamado c');
+               $this->db->join('usuarios u', 'u.id=c.idrequerente');
+               $query = $this->db->get();
                return $query->result_array(); //todos os registros
+
 
           }
 
@@ -27,9 +36,13 @@
           public function getRequerente($id=null){
             if($id==null){
               $idReq = $this->session->userdata['logado']['id'];
-              $query = $this->db->get_where('chamado', array('status'=>'novo','idrequerente'=>$idReq));
-              return $query->result_array();
 
+              $this->db->select('c.id,c.titulo,c.descricao,c.STATUS,c.solucao,u.user as requerente');
+              $this->db->from('chamado c');
+              $this->db->join('usuarios u', 'u.id=c.idrequerente');
+              $this->db->where(array('c.status'=>'novo','c.idrequerente'=>$idReq));
+              $query = $this->db->get();
+              return $query->result_array();
               }
                 $query = $this->db->get_where('chamado', array('id'=>$id));
                 return $query->row_array(); //uma unica linha MATCH
@@ -37,21 +50,15 @@
           }
           public function getTodosRequerente(){
                     $idReq = $this->session->userdata['logado']['id'];
-                   $query = $this->db->get('chamado');
-                   $query = $this->db->get_where('chamado', array('idrequerente'=>$idReq));
-                   return $query->result_array(); //todos os registros
 
-              }
-
-
-
-
-
-
-      public function remover($id){
-          return $this->db->where(array('id'=>$id))->delete($this->tabelaNome);
-      }
-
+                    $this->db->select('c.id,c.titulo,c.descricao,c.STATUS,c.solucao,u.user as requerente');
+                    $this->db->from('chamado c');
+                    $this->db->join('usuarios u', 'u.id=c.idrequerente');
+                    $this->db->where(array('c.idrequerente'=>$idReq));
+                    $query = $this->db->get();
+                    return $query->result_array();
+          }
+          
       public function cadastrar($id=null){
           $registro = $this->input->post();
 

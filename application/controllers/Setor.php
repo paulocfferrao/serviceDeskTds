@@ -1,7 +1,7 @@
 <?php
 
 
-  class Usuarios extends MY_Controller{
+  class Setor extends MY_Controller{
 
 
       public function __construct(){
@@ -9,19 +9,19 @@
           if($this->session->userdata['logado']['tipo']!='admin'){
               redirect('login');//ajustar para redirecionar para chamados com mensagem de acesso negado
           }
-          $this->load->model('usuario_model');
+          $this->load->model('setor_model');
 
       }
 
       public function index(){
           $dados['titulo']= "Manutenção de Usuário";
-          $dados['lista'] = $this->usuario_model->get();
+          $dados['lista'] = $this->setor_model->get();
 
-          $this->template->load('template', 'usuario/viewUsuario', $dados);
+          $this->template->load('template', 'setor/viewSetor', $dados);
       }
 
       public function remover($id){
-          if(!$this->usuario_model->remover($id)){
+          if(!$this->setor_model->remover($id)){
               die('Erro ao tentar remover');
           }
           $this->index();
@@ -35,37 +35,28 @@
           $dados['titulo'] = "Cadastro de Usuários";
 
           //definição de regras para o formulário
-          $rule_nome = 'required' . (($id==null)? '|is_unique[usuarios.user]' : '');
+          $rule_nome = 'required' . (($id==null)? '|is_unique[setor.nome]' : '');
           // echo $rule_nome;
-          $this->form_validation->set_rules('user', 'Login', $rule_nome);
-
-          //senha obrigatoria apenas no cadastro
-          if($id==null) $this->form_validation->set_rules('senha', 'senha', 'required');
-
-          $this->form_validation->set_rules('tipo', 'Tipo', 'required');
+          $this->form_validation->set_rules('nome', 'Nome', $rule_nome);
 
           //acao dinamica que sera enviada para a view
-          $dados['acao'] = "usuarios/cadastrar/";
+          $dados['acao'] = "setor/cadastrar/";
 
           $dados['registro'] = null; //Iniciar como null
           if($id!==null){
               $dados['acao']    .= $id; //concatenando o id
-              $dados['registro'] = $this->usuario_model->get($id);
+              $dados['registro'] = $this->setor_model->get($id);
           }
-          $this->load->model('setor_model');
-          $dados['listaSetor'] = $this->setor_model->get();
 
           //veririca se o form foi submetido e não houve erros de validação
           if($this->form_validation->run()===false){
 
-              $this->template->load('template', 'usuario/formUsuario', $dados);
+              $this->template->load('template', 'setor/formSetor', $dados);
           }else{ //neste caso, form submetido e ok!
-              // $registro = $this->input->post();
-              // print_r($registro);
-              if(!$this->usuario_model->cadastrar($id)){
+              if(!$this->setor_model->cadastrar($id)){
                   die("Erro ao tentar cadastrar os dados");
               }
-              redirect('usuarios/index'); //redireciona o fluxo da aplicação
+              redirect('setor/index'); //redireciona o fluxo da aplicação
           }
 
 
