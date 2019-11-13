@@ -6,9 +6,7 @@
 
       public function __construct(){
           parent::__construct();
-          //if($this->session->userdata['logado']['tipo']!='admin'){
-            //redirect('login');//ajustar para redirecionar para chamados com mensagem de acesso negado
-          //}
+
           $this->load->model('chamado_model');
 
       }
@@ -19,25 +17,11 @@
           if($this->session->userdata['logado']['tipo']!='requerente'){
             if ($todos=='1') {
               $dados['lista'] = $this->chamado_model->getTodos();
-              // foreach ($dados['lista'] as $item) {
-              //
-              //     $this->load->model('usuario_model');
-              //     $id = $item['idrequerente'];
-              //     $item['requerente'] = $this->usuario_model->get($id);
-              //
-              //
-              // }
+
               $this->template->load('template', 'chamado/viewChamado', $dados);
             }else{
               $dados['lista'] = $this->chamado_model->get();
-              // foreach ($dados['lista'] as $item) {
-              //
-              //     $this->load->model('usuario_model');
-              //     $id = $item['idrequerente'];
-              //     $item['requerente'] = $this->usuario_model->get($id);
-              //
-              //
-              // }
+
               $this->template->load('template', 'chamado/viewChamado', $dados);
             }
           } else {
@@ -95,8 +79,6 @@
 
               $this->template->load('template', 'chamado/formChamado', $dados);
           }else{ //neste caso, form submetido e ok!
-              // $registro = $this->input->post();
-              // print_r($registro);
               if(!$this->chamado_model->cadastrar($id)){
                   die("Erro ao tentar cadastrar os dados");
               }

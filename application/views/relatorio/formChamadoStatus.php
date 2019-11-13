@@ -11,15 +11,15 @@
                 </div>
           <?php } ?>
 
-          <?php echo form_open('relatorio/emprestimoPeriodo'); ?>
+          <?php echo form_open('relatorio/chamadoStatus'); ?>
             <div class="form-group">
-              <label for="idestado">Data Inicial</label>
-              <input class="form-control" type="date" name="data_inicial" value="<?= date('Y-m-01'); ?>">
+              <label for="idestado">Status</label>
+              <select class="form-control" name="status">
+                <option value="novo">Novo</option>
+                <option value="fechado">Fechado</option>
+              </select>
             </div>
-            <div class="form-group">
-              <label for="idestado">Data Final</label>
-              <input class="form-control" type="date" name="data_final" value="<?= date('Y-m-d'); ?>">
-            </div>
+            
             <button class="btn btn-success" type="submit" formtarget="_blank">Enviar</button>
           </form>
         </div>

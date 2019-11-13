@@ -14,7 +14,7 @@ class PDF extends FPDF
       // Move to the right
       $this->Cell(40);
       // Title
-      $this->Cell(100, 10, utf8_decode('Relatório - Empréstimo por Período'), 0, 0, 'C');
+      $this->Cell(100, 10, utf8_decode('Relatório - Chamados por status'), 0, 0, 'C');
       // Line break
       $this->Ln(20);
   }
@@ -30,7 +30,7 @@ class PDF extends FPDF
   }
 
   // Colored table
-  function FancyTable($header, $data) {
+  function FancyTable($header, $status) {
       // Colors, line width and bold font
       $this->SetFillColor(138,177,219);
       // $this->SetFillColor(255,0,0);
@@ -51,12 +51,11 @@ class PDF extends FPDF
       // Data
       $fill = false;
       $cont=1;
-      foreach($data as $row) {
+      foreach($status as $row) {
           $this->Cell($w[0],6,$cont++,'LR', 0,'L',$fill);
-          $this->Cell($w[1],6, date('d/m/Y', strtotime($row['data_emprestimo'])),'LR',0,'L',$fill);
-          $this->Cell($w[2],6, date('d/m/Y', strtotime($row['data_emprestimo'])),'LR',0,'L',$fill);
-          $this->Cell($w[3],6,$row['objeto'],'LR',0,'R',$fill);
-          $this->Cell($w[4],6,$row['pessoa'],'LR',0,'R',$fill);
+          $this->Cell($w[1],6, $row['titulo'],'LR',0,'L',$fill);
+          $this->Cell($w[2],6, $row['requerente'],'LR',0,'L',$fill);
+          $this->Cell($w[3],6, $row['STATUS'],'LR',0,'R',$fill);
           $this->Ln();
           $fill = !$fill;
       }
@@ -67,12 +66,12 @@ class PDF extends FPDF
 
   $pdf = new PDF();
   // Column headings
-  $header = array('#', 'Data Emp.', 'Data Dev.', 'Objeto', 'Pessoa');
+  $header = array('#', 'Titulo', 'Requerente', 'Status');
   // Data loading
-  // $data = $pdf->LoadData('countries.txt');
+  // $status = $pdf->LoadData('countries.txt');
   $pdf->SetFont('Arial','',14);
   $pdf->AliasNbPages();
   $pdf->AddPage();
-  $pdf->FancyTable($header,$data);
+  $pdf->FancyTable($header,$status);
   $pdf->Output();
 ?>
