@@ -13,11 +13,11 @@
 
       }
 
-      public function getChamadoCategoria($requerente){
+      public function getChamadoRequerente($requerente){
         $this->db->select('c.id,c.titulo,c.descricao,c.STATUS,c.solucao,u.user as requerente');
         $this->db->from('chamado c');
         $this->db->join('usuarios u', 'u.id=c.idrequerente');
-        $this->db->where(array('c.status'=>$requerente));
+        $this->db->where(array('c.idrequerente'=>$requerente));
         $query = $this->db->get();
         return $query->result_array();
 

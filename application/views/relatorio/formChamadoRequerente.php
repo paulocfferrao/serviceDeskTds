@@ -14,7 +14,7 @@
           <?php echo form_open('relatorio/chamadoStatus'); ?>
             <div class="form-group">
               <label>Nome</label>
-              <select class="form-control" name="requerente">
+              <select class="form-control" id="requerente" name="requerente">
                 <option value="">Selecione um item da lista</option>
                 <?php
                 $this->db->select('u.id, u.user, u.tipo, s.nome as setor');
@@ -26,7 +26,7 @@
                  ?>
                   <?php foreach ($listaRequerentes as $c): ?>
                       <option value="<?= $c['id']; ?>">
-                          <?= $c['usuer']; ?>
+                          <?= $c['user'] . ' | ' . $c['setor']?>
                       </option>
                   <?php endforeach; ?>
                 </select>

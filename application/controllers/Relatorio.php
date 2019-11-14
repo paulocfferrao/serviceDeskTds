@@ -19,11 +19,25 @@
 
       public function chamadoStatus() {
           $status   = $this->input->post('status');
-          //$fim   = $this->input->post('data_final');
           $dados['titulo'] = "Chamados por status";
           $dados['status']   = $this->relatorio_model->getChamadoStatus($status);
           $this->load->library('MY_FPDF');
           $this->load->view('relatorio/chamadoStatusPDF', $dados);
+      }
+
+      public function formChamadoRequerente(){
+          $dados['titulo'] = "Relatório de chamados por requerente";
+          $this->load->helper('form');
+          $this->load->library('form_validation');
+          $this->template->load('template', 'relatorio/formChamadoRequerente', $dados);
+      }
+
+      public function chamadoRequerente() {
+          $requerente   = $this->input->post('requerente');
+          $dados['titulo'] = "Chamados por requerente";
+          $dados['listaRequerentes']   = $this->relatorio_model->getChamadoRequerente($requerente);
+          $this->load->library('MY_FPDF');
+          $this->load->view('relatorio/chamadoRequerentePDF', $dados);
       }
 
   }

@@ -14,7 +14,7 @@
       }
 
       public function index(){
-          $dados['titulo']= "Manutenção de Usuário";
+          $dados['titulo']= "Manutenção de categorias";
           $dados['lista'] = $this->categoria_model->get();
 
           $this->template->load('template', 'categoria/viewCategoria', $dados);

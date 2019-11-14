@@ -14,7 +14,7 @@
       }
 
       public function index(){
-          $dados['titulo']= "Manutenção de Usuário";
+          $dados['titulo']= "Manutenção de computadores";
           $dados['lista'] = $this->computador_model->get();
 
           $this->template->load('template', 'computador/viewComputador', $dados);

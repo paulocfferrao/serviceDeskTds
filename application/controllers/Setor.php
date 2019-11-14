@@ -14,7 +14,7 @@
       }
 
       public function index(){
-          $dados['titulo']= "Manutenção de Usuário";
+          $dados['titulo']= "Manutenção de setores";
           $dados['lista'] = $this->setor_model->get();
 
           $this->template->load('template', 'setor/viewSetor', $dados);
