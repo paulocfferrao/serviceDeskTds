@@ -12,9 +12,9 @@ class MY_FPDF extends FPDF
       // Arial bold 15
       $this->SetFont('Arial','B',15);
       // Move to the right
-      $this->Cell(40);
+      $this->Cell(60);
       // Title
-      $this->Cell(100, 10, utf8_decode('Relatório - Empréstimo por Período'), 0, 0, 'C');
+      $this->Cell(100, 10, utf8_decode('Relatório'), 0, 0, 'C');
       // Line break
       $this->Ln(20);
   }

@@ -11,33 +11,48 @@
       }
 
       public function formChamadoStatus(){
-          $dados['titulo'] = "Relatório de chamados por status";
+          $relDados['titulo'] = "Relatório de chamados por status";
           $this->load->helper('form');
           $this->load->library('form_validation');
-          $this->template->load('template', 'relatorio/formChamadoStatus', $dados);
+          $this->template->load('template', 'relatorio/formChamadoStatus', $relDados);
       }
 
       public function chamadoStatus() {
           $status   = $this->input->post('status');
-          $dados['titulo'] = "Chamados por status";
-          $dados['status']   = $this->relatorio_model->getChamadoStatus($status);
+          $relDados['titulo'] = "Chamados por status";
+          $relDados['status']   = $this->relatorio_model->getChamadoStatus($status);
           $this->load->library('MY_FPDF');
-          $this->load->view('relatorio/chamadoStatusPDF', $dados);
+          $this->load->view('relatorio/chamadoStatusPDF', $relDados);
+      }
+
+      public function formUsuarioSetor(){
+          $relDados['titulo'] = "Relatório de chamados por status";
+          $this->load->helper('form');
+          $this->load->library('form_validation');
+          $this->template->load('template', 'relatorio/formUsuarioSetor', $relDados);
+      }
+
+      public function usuarioSetor() {
+          $status   = $this->input->post('status');
+          $relDados['titulo'] = "Usuários por Statos";
+          $relDados['usuario']   = $this->relatorio_model->getUsuarioSetor($status);
+          $this->load->library('MY_FPDF');
+          $this->load->view('relatorio/usuarioSetorPDF', $relDados);
       }
 
       public function formChamadoRequerente(){
-          $dados['titulo'] = "Relatório de chamados por requerente";
+          $relDados['titulo'] = "Relatório de chamados por requerente";
           $this->load->helper('form');
           $this->load->library('form_validation');
-          $this->template->load('template', 'relatorio/formChamadoRequerente', $dados);
+          $this->template->load('template', 'relatorio/formChamadoRequerente', $relDados);
       }
 
       public function chamadoRequerente() {
           $requerente   = $this->input->post('requerente');
-          $dados['titulo'] = "Chamados por requerente";
-          $dados['listaRequerentes']   = $this->relatorio_model->getChamadoRequerente($requerente);
+          $relDados['titulo'] = "Chamados por requerente";
+          $relDados['requerente']   = $this->relatorio_model->getChamadoRequerente($requerente);
           $this->load->library('MY_FPDF');
-          $this->load->view('relatorio/chamadoRequerentePDF', $dados);
+          $this->load->view('relatorio/chamadoRequerentePDF', $relDados);
       }
 
   }

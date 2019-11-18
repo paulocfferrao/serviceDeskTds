@@ -3,7 +3,7 @@
 class PDF extends MY_FPDF
 {
   // Colored table
-  function FancyTable($header, $requerente) {
+  function FancyTable($header, $usuario) {
       // Colors, line width and bold font
       $this->SetFillColor(138,177,219);
       // $this->SetFillColor(255,0,0);
@@ -24,11 +24,10 @@ class PDF extends MY_FPDF
       // Data
       $fill = false;
       $cont=1;
-      foreach($requerente as $row) {
+      foreach($usuario as $row) {
           $this->Cell($w[0],6,$cont++,'LR', 0,'L',$fill);
-          $this->Cell($w[1],6, $row['titulo'],'LR',0,'L',$fill);
-          $this->Cell($w[2],6, $row['requerente'],'LR',0,'L',$fill);
-          $this->Cell($w[3],6, $row['STATUS'],'LR',0,'R',$fill);
+          $this->Cell($w[1],6, $row['user'],'LR',0,'L',$fill);
+          $this->Cell($w[2],6, $row['setor'],'LR',0,'L',$fill);
           $this->Ln();
           $fill = !$fill;
       }
@@ -39,12 +38,11 @@ class PDF extends MY_FPDF
 
       $pdf = new PDF();
       // Column headings
-      $header = array('#', 'Titulo', 'Requerente', 'Status');
-  // Data loading
-  // $status = $pdf->LoadData('countries.txt');
+      $header = array('#', 'Login', 'Setor');
+  
   $pdf->SetFont('Arial','',14);
   $pdf->AliasNbPages();
   $pdf->AddPage();
-  $pdf->FancyTable($header,$requerente);
+  $pdf->FancyTable($header,$usuario);
   $pdf->Output();
 ?>

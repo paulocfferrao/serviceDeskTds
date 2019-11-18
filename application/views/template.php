@@ -20,7 +20,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
         page. However, you can choose any other skin. Make sure you
         apply the skin class to the body tag so the changes take effect. -->
-  <link rel="stylesheet" href="<?= base_url('assets/dist/css/skins/skin-blue.min.css'); ?>">
+  <link rel="stylesheet" href="<?= base_url('assets/dist/css/skins/_all-skins.min.css'); ?>">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -55,7 +55,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-green sidebar-mini">
 <div class="wrapper">
 
   <!-- Main Header -->
@@ -152,14 +152,21 @@ desired effect
   <?php if($this->session->userdata['logado']['tipo']!='requerente'){ ?>
   <li class="active">
     <a href="<?= site_url('relatorio/formChamadoStatus'); ?>">
-      <i class="fa fa-link"></i> <span>Relatório Status</span>
+      <i class="fa fa-link"></i> <span>Chamados por status</span>
     </a>
   </li>
 <?php } ?>
 <?php if($this->session->userdata['logado']['tipo']!='requerente'){ ?>
 <li class="active">
   <a href="<?= site_url('relatorio/formChamadoRequerente'); ?>">
-    <i class="fa fa-link"></i> <span>Relatório Requerente</span>
+    <i class="fa fa-link"></i> <span>Chamados por requerente</span>
+  </a>
+</li>
+<?php } ?>
+<?php if($this->session->userdata['logado']['tipo']!='requerente'){ ?>
+<li class="active">
+  <a href="<?= site_url('relatorio/formUsuarioSetor'); ?>">
+    <i class="fa fa-link"></i> <span>Usuários por setor</span>
   </a>
 </li>
 <?php } ?>
